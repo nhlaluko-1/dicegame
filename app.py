@@ -54,7 +54,7 @@ def playgame(username):
             computer_score
         )
         print(f'''{username} : {user_score}
-        Computer : {computer_score}''')
+Computer : {computer_score}''')
         turns +=1
     
     if computer_score > user_score:

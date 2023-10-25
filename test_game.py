@@ -32,11 +32,14 @@ class TestGame(unittest.TestCase):
     def test_play_game(self, _):
         name = user_name()
         
-        expectedOutput = f"""{name} : 1
-        Computer : 2
-        Computer is the Winner!"""
+        expectedOutput = f"""{name} : 0
+Computer : 1
+{name} : 0
+Computer : 2
+{name} : 0
+Computer : 3
+Computer is the Winner!"""
         with patch('sys.stdout', new = StringIO()) as output:
-            play_game(name)
-            play_game(name)
-            play_game(name)
-            self.assertEqual(output.getvalue(), expectedOutput)
+            with patch('random.randint', side_effect=[4,5, 3,6, 1,2]):
+                playgame(name)
+                self.assertEqual(output.getvalue(), expectedOutput)
